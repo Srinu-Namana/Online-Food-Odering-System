@@ -1,236 +1,198 @@
-# 🍔 Online Food Ordering System
+# Online Food Ordering System
 
-**OnlineFoodOrderingSystem** is a web-based food ordering application built as an Eclipse **Dynamic Web Project** using **Java Servlets, JSP, JDBC and MySQL**, following the **MVC architecture**. Customers can browse the menu, add items to a cart and place orders, while admins manage menu items and track orders.
+A food ordering web application built with **Java Servlets, JSP, JDBC, and MySQL** for **Victo Food House**. Customers can browse the menu, manage their cart, access checkout, and view order history.
 
-![Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk)
-![Servlets](https://img.shields.io/badge/Servlets-JSP-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
-![Tomcat](https://img.shields.io/badge/Tomcat-10%2F11-F8DC75?logo=apachetomcat&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green)
+## About the Project
 
----
+**Victo Food House** is a single-restaurant online food ordering project built with **Java Servlets, JSP, JDBC, and MySQL**. It brings together a category-based menu, shopping cart, checkout page, and customer order history in a Bootstrap interface.
 
-## 📑 Table of Contents
+The project follows **MVC architecture** with a dedicated **DAO layer**, separating request handling, presentation, and database access. It demonstrates core Java web development concepts through a familiar, practical application.
 
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Project Structure](#-project-structure)
-- [Database Design](#-database-design)
-- [Getting Started](#-getting-started)
-- [Usage](#-usage)
-- [Screenshots](#-screenshots)
-- [Future Enhancements](#-future-enhancements)
-- [Contributing](#-contributing)
-- [Author](#-author)
+## Features
 
----
+| Feature | Experience |
+| :--- | :--- |
+| **Customer access** | Login-first landing page with a home view and logout option after sign-in. |
+| **Restaurant menu** | Category chips, food photographs, prices, and quantity selection. |
+| **Shopping cart** | Review selected items and totals, update quantities, and remove items. |
+| **Quantity updates** | Dedicated update page with server-side Servlet and DAO/JDBC processing. |
+| **Checkout** | A separate checkout interface accessible from the ordering workflow. |
+| **Order history** | A dedicated page for viewing customer orders. |
+| **Dynamic presentation** | Database-driven image URLs and Bootstrap navigation components. |
 
-## ✨ Features
+## Technologies Used
 
-### 👤 Customer
-- User registration and login with session management
-- Browse the food menu by category
-- Search food items
-- Add / update / remove items in the cart
-- Place orders and view order history
-- Logout
+| Layer | Technology |
+| --- | --- |
+| Language | Java 17 |
+| Request handling | Java Servlets / Jakarta Servlet API 6.1.0 |
+| Views | JSP, HTML5, CSS3 |
+| UI components | Bootstrap 5.3.3, Bootstrap Icons |
+| Database access | JDBC, DAO design pattern |
+| Database | MySQL |
+| JDBC driver | MySQL Connector/J 9.6.0 |
+| Application server | Apache Tomcat 11 |
+| Project environment | Eclipse Dynamic Web Project |
+| Architecture | Model–View–Controller (MVC) |
 
-### 🛠️ Admin
-- Secure admin login
-- Add, update and delete food items
-- Manage categories
-- View and update order status (Pending → Preparing → Delivered)
-- View registered customers
+## How It Works
 
-### 🔒 General
-- Session-based authentication and authorization
-- Input validation
-- Prepared statements to prevent SQL injection
+1. The browser sends a request to a Servlet, such as the menu or cart controller.
+2. The Servlet coordinates the request and calls the DAO layer when database access is needed.
+3. DAO classes execute database operations through JDBC using the connection utility.
+4. The application passes the required data to a JSP view.
+5. The JSP displays the result using HTML, CSS, and Bootstrap.
 
-> Edit this list so it matches exactly what your project does.
+For example, `FoodListServlet` provides the menu view in `menu.jsp`, while `OrderHistoryServlet` provides the customer order history view in `orders.jsp`.
 
----
+## Project Files
 
-## 🧰 Tech Stack
+| Component | Responsibility | Location |
+| --- | --- | --- |
+| Controller | Handle incoming requests and coordinate application actions | `src/com/food/controller/` |
+| Model | Represent application data | `src/com/food/model/` |
+| DAO | Perform database operations through JDBC | `src/com/food/dao/` |
+| Database utility | Configure and create database connections | `src/com/food/util/DBConnection.java` |
+| View | Render the user interface | `WebContent/*.jsp` |
 
-| Layer      | Technology                            |
-|------------|---------------------------------------|
-| Frontend   | HTML, CSS, Bootstrap, JavaScript, JSP |
-| Backend    | Java, Servlets, JDBC                  |
-| Database   | MySQL                                 |
-| Server     | Apache Tomcat                         |
-| Tools      | Eclipse / VS Code, Git, GitHub        |
+## Prerequisites
 
----
+- JDK 17
+- Eclipse with Java web development support
+- Apache Tomcat 11
+- MySQL and MySQL Workbench
+- Jakarta Servlet API 6.1.0 and MySQL Connector/J 9.6.0 JAR files
 
-## 🏗️ Architecture
+## How to Run
 
-The project follows the **MVC (Model-View-Controller)** pattern:
+### 1. Prepare the environment
 
-```
- Browser ──► Servlet (Controller) ──► DAO (Model) ──► MySQL
-    ▲              │
-    └──── JSP (View) ◄────┘
-```
+Install Java 17, MySQL, Apache Tomcat 11, and an Eclipse installation with Java web development support. Download or clone this repository and locate the `OnlineFoodOrderingSystem` project folder.
 
-- **Model**: JavaBeans (`User`, `FoodItem`, `Order`) and DAO classes that talk to the database via JDBC
-- **View**: JSP pages for the user interface
-- **Controller**: Servlets that handle requests, call DAOs and forward to views
+The Eclipse build path references these dependency files:
 
----
+| Dependency | Expected location |
+| --- | --- |
+| Jakarta Servlet API | `lib/jakarta.servlet-api-6.1.0.jar` |
+| MySQL Connector/J | `WebContent/WEB-INF/lib/mysql-connector-j-9.6.0.jar` |
 
-## 📂 Project Structure
+Make sure these files are present or adjust the Eclipse build path to match their actual locations. Tomcat provides the Servlet API at runtime; keep that API dependency out of the deployed application's `WEB-INF/lib` folder.
 
-```
-OnlineFoodOrderingSystem/
-├── src/main/java/com/foodapp/
-│   ├── controller/      # Servlets (Login, Register, Cart, Order, Admin...)
-│   ├── dao/             # Data access classes (UserDAO, FoodDAO, OrderDAO)
-│   ├── model/           # POJOs / JavaBeans
-│   └── util/            # DBConnection utility
-├── src/main/webapp/
-│   ├── css/
-│   ├── js/
-│   ├── images/
-│   ├── WEB-INF/web.xml
-│   ├── index.jsp
-│   ├── login.jsp
-│   ├── register.jsp
-│   ├── menu.jsp
-│   ├── cart.jsp
-│   └── orders.jsp
-├── database/
-│   └── food_db.sql      # Database schema + sample data
-└── README.md
+### 2. Set up the database
+
+1. Start MySQL and open MySQL Workbench.
+2. Open and execute `database/food_ordering_db.sql`.
+3. Confirm that the `food_ordering_db` database is available.
+4. Open `src/com/food/util/DBConnection.java` and configure its connection URL, username, and password for your local MySQL installation.
+
+For a local MySQL server on its default port, the JDBC URL is:
+
+```text
+jdbc:mysql://localhost:3306/food_ordering_db
 ```
 
-> Adjust folder and file names to match your repository.
+Use your own local database credentials. Do not commit private credentials to a public repository.
 
----
+### 3. Import into Eclipse
 
-## 🗄️ Database Design
+1. Select **File → Import → General → Existing Projects into Workspace**.
+2. Browse to the `OnlineFoodOrderingSystem` folder and finish the import.
+3. Under **Project Properties → Targeted Runtimes**, select **Apache Tomcat v11.0**.
+4. Check the project facets. The project import guide specifies **Java 17** and **Dynamic Web Module 6.0**.
+5. Confirm that the Java build path resolves the required JAR files.
+6. Select **Project → Clean**.
 
-**Main tables**
+### 4. Run the application
 
-| Table         | Purpose                                      |
-|---------------|----------------------------------------------|
-| `users`       | Customer and admin accounts                  |
-| `categories`  | Food categories (Starters, Biryani, Drinks…) |
-| `food_items`  | Menu items with price, image and category    |
-| `orders`      | Order header (user, total, status, date)     |
-| `order_items` | Items belonging to each order                |
+Add the project to Tomcat 11 in Eclipse's **Servers** view, then start the server.
 
-Import the schema from `database/food_db.sql`.
+Open:
 
----
+```text
+http://localhost:8080/OnlineFoodOrderingSystem/
+```
 
-## 🚀 Getting Started
+If your Tomcat port or application context differs, adjust the URL accordingly.
 
-### Prerequisites
-- JDK 17 or later
-- Apache Tomcat 10 or later
-- MySQL 8.0 or later
-- Eclipse IDE for Enterprise Java (or any IDE with Tomcat support)
-- MySQL Connector/J (JDBC driver)
+## Demo Accounts
 
-### Installation
+Use these demo accounts after importing the project database:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/<your-username>/<your-repo-name>.git
-   cd <your-repo-name>
-   ```
+| Role | Email | Password |
+| --- | --- | --- |
+| Customer | `sreenu@gmail.com` | `12345` |
+| Admin | `admin@victo.com` | `admin123` |
 
-2. **Create the database**
-   ```sql
-   CREATE DATABASE food_db;
-   USE food_db;
-   SOURCE database/food_db.sql;
-   ```
+> These are local demo accounts. Replace or disable them before deploying publicly.
 
-3. **Configure the database connection** in `DBConnection.java`
-   ```java
-   private static final String URL = "jdbc:mysql://localhost:3306/food_db";
-   private static final String USER = "root";
-   private static final String PASSWORD = "your_password";
-   ```
+## Pages and Controllers
 
-4. **Add the MySQL Connector/J JAR** to `WEB-INF/lib` (or your build path).
+| Entry point / Controller | View | Purpose |
+| --- | --- | --- |
+| Landing page | `index.jsp` | Login-first entry page and home page after login |
+| `FoodListServlet` | `menu.jsp` | Category-based menu, photographs, prices, and quantity selection |
+| `CartServlet` | `cart.jsp` | Cart items, totals, update controls, and removal actions |
+| `UpdateCartServlet` | `update-cart.jsp` | Dedicated quantity update page |
+| Checkout page | `checkout.jsp` | Checkout interface |
+| `OrderHistoryServlet` | `orders.jsp` | Customer order history |
 
-5. **Import into Eclipse**
-   `File → Import → Existing Projects into Workspace`
+Controller names above identify project classes; consult their mappings before using them as direct URLs.
 
-6. **Run on Tomcat**
-   Right-click the project → `Run As → Run on Server` → choose Tomcat.
+## Implementation Notes
 
-7. **Open in browser**
-   ```
-   http://localhost:8080/OnlineFoodOrderingSystem/
-   ```
+- The project is configured for **one restaurant: Victo Food House**.
+- Food image URLs are stored in MySQL and rendered dynamically in JSP pages. External image availability depends on their source hosts.
+- No custom JavaScript validation is included. Bootstrap's bundled JavaScript is used for components such as the responsive navbar.
+- Cart quantity changes are handled on the server through the Servlet and DAO/JDBC layers.
+- The Eclipse configuration uses a source folder and explicit JAR dependencies; these instructions do not assume a Maven or Gradle build.
 
----
+## Common Problems
 
-## 💡 Usage
+| Problem | What to check |
+| --- | --- |
+| Database connection fails | MySQL is running; the SQL script has been executed; the URL and credentials in `DBConnection.java` match your installation. |
+| MySQL driver is missing | Connector/J exists at the expected path and is available to the deployed application. |
+| Servlet classes cannot be resolved | The Servlet API dependency, Java 17 build path, and Tomcat 11 targeted runtime are configured. |
+| Application returns 404 | The project is added to Tomcat, deployment completed, and the context path and port match the URL. |
+| Food images do not load | The database contains valid image URLs and the image hosts are reachable. |
+| Eclipse reports runtime or facet errors | Check the installed Tomcat adapter and project facets, then clean and republish the project. |
 
-**Customer:** Register → Log in → Browse menu → Add to cart → Place order → View order history
+## Learning Highlights
 
-**Admin:** Log in with admin credentials → Manage menu items → Update order status
+This project demonstrates:
 
-| Role  | Username          | Password   |
-|-------|-------------------|------------|
-| Admin | `admin@food.com`  | `admin123` |
+- Handling web requests with Java Servlets.
+- Rendering dynamic content with JSP.
+- Connecting a Java application to MySQL using JDBC.
+- Separating database logic with the DAO design pattern.
+- Organizing controllers, models, and views using MVC architecture.
+- Building menu and cart interfaces with Bootstrap.
+- Configuring and running a Java web project in Eclipse and Tomcat.
 
-> Replace these with your actual demo credentials, or remove this table.
+## Future Enhancements
 
----
+The following are future ideas, not claims about the current implementation:
 
-## 📸 Screenshots
+- Add automated tests for cart operations and order processing.
+- Add search and filtering by price or dietary preference.
+- Add order status tracking and customer notifications.
+- Integrate a payment provider in test mode.
+- Extend the application to support multiple restaurants.
 
-Create a `screenshots/` folder, add your images and link them here:
+## Screenshots
 
-| Home Page | Menu | Cart |
-|-----------|------|------|
-| ![Home](screenshots/home.png) | ![Menu](screenshots/menu.png) | ![Cart](screenshots/cart.png) |
+Screenshots can be added to a `screenshots` folder to show the following pages:
 
-| Order History | Admin Dashboard |
-|---------------|-----------------|
-| ![Orders](screenshots/orders.png) | ![Admin](screenshots/admin.png) |
+- Login and home page
+- Food menu
+- Shopping cart
+- Quantity update page
+- Checkout
+- Order history
 
----
+## Author
 
-## 🔮 Future Enhancements
+**NAMANA LAKSHMI SAI MANIKANTA SRINU**
 
-- Online payment gateway integration
-- Password hashing (BCrypt)
-- Order tracking and email notifications
-- Ratings and reviews
-- Migration to Spring Boot REST APIs with a React frontend
-- Docker support
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m "Add your feature"`
-4. Push: `git push origin feature/your-feature`
-5. Open a Pull Request
-
----
-
-## 👨‍💻 Author
-
-**Lakshmi Sai Manikanta Srinu Namana**
-Aspiring Java Full Stack Developer
-
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [your-profile](https://linkedin.com/in/your-profile)
-- Email: your-email@example.com
-
----
-
-⭐ If you found this project useful, please give it a star!
+- GitHub: [Srinu-Namana](https://github.com/Srinu-Namana)
+- LinkedIn: [Namana Manikanta](https://www.linkedin.com/in/namana-manikanta-489a42375/)
