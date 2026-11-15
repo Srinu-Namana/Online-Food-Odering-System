@@ -1,0 +1,4 @@
+package com.food.controller;
+import com.food.dao.OrderDAO; import jakarta.servlet.annotation.WebServlet; import jakarta.servlet.http.*; import java.io.IOException;
+@WebServlet("/PlaceOrderServlet")
+public class PlaceOrderServlet extends HttpServlet{protected void doPost(HttpServletRequest req,HttpServletResponse resp)throws IOException{if(!ServletUtil.requireLogin(req,resp))return;String address=req.getParameter("address");if(address==null||address.trim().isEmpty()){resp.sendRedirect(req.getContextPath()+"/checkout.jsp?error=address");return;}try{int id=new OrderDAO().placeOrder(ServletUtil.user(req).getUserId(),address.trim());resp.sendRedirect(req.getContextPath()+"/OrderHistoryServlet?placed="+id);}catch(Exception e){resp.sendRedirect(req.getContextPath()+"/CartServlet?error=order");}}}

@@ -1,0 +1,32 @@
+Real high-definition food image sources used by Victo Food House:
+
+Categories:
+All Menu: https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80
+Biryani: https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&auto=format&fit=crop&q=80
+Starters: https://upload.wikimedia.org/wikipedia/commons/d/d7/Chicken_65.jpg
+Rice: https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=80
+Noodles: https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&auto=format&fit=crop&q=80
+Burgers: https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80
+Pizza: https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80
+Desserts: https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&auto=format&fit=crop&q=80
+
+Dishes:
+Chicken Biryani: https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80
+Mutton Biryani: https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=800&auto=format&fit=crop&q=80
+Veg Biryani: https://images.unsplash.com/photo-1642821373181-696a54913e93?w=800&auto=format&fit=crop&q=80
+Chicken 65: https://upload.wikimedia.org/wikipedia/commons/d/d7/Chicken_65.jpg
+Chicken Manchurian: https://images.unsplash.com/photo-1525755662778-989d0524087e?w=800&auto=format&fit=crop&q=80
+Paneer 65: https://images.unsplash.com/photo-1567184109-24b52b2fa955?w=800&auto=format&fit=crop&q=80
+Chicken Fried Rice: https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&auto=format&fit=crop&q=80
+Veg Fried Rice: https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80
+Chicken Noodles: https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800&auto=format&fit=crop&q=80
+Chicken Burger: https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&auto=format&fit=crop&q=80
+Veg Burger: https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&auto=format&fit=crop&q=80
+Chicken Pizza: https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop&q=80
+Veg Pizza: https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop&q=80
+Gulab Jamun: https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80
+Chocolate Brownie: https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&auto=format&fit=crop&q=80
+
+Restaurant Showcase:
+Victo Food House: https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&auto=format&fit=crop&q=80
+

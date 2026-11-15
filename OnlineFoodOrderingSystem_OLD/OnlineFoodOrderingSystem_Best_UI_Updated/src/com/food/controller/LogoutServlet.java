@@ -1,0 +1,4 @@
+package com.food.controller;
+import jakarta.servlet.annotation.WebServlet; import jakarta.servlet.http.*; import java.io.IOException;
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet{protected void doGet(HttpServletRequest req,HttpServletResponse resp)throws IOException{HttpSession s=req.getSession(false);if(s!=null)s.invalidate();resp.sendRedirect(req.getContextPath()+"/index.jsp?logout=1");}}
